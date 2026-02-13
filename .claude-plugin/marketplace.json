@@ -1,0 +1,22 @@
+{
+  "name": "handol-park-plugins",
+  "owner": {
+    "name": "Handol Park",
+    "email": "handol.park@gmail.com"
+  },
+  "metadata": {
+    "description": "Handol Park's Claude Code plugins — orchestration workflows, development discipline, and productivity tools"
+  },
+  "plugins": [
+    {
+      "name": "rlm-orchestration",
+      "source": "./plugins/rlm-orchestration",
+      "description": "RLM-disciplined orchestration — main thread as orchestrator, subagents as workers, task list as call stack",
+      "version": "1.0.0",
+      "author": {
+        "name": "Handol Park"
+      },
+      "license": "MIT"
+    }
+  ]
+}

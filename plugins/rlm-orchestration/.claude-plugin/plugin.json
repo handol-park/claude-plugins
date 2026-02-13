@@ -5,7 +5,7 @@
   "author": {
     "name": "Handol Park"
   },
-  "repository": "https://cmg-financial.ghe.com/hpark/rlm-orchestration",
+  "repository": "https://github.com/handol-park/claude-plugins",
   "license": "MIT",
   "keywords": ["orchestration", "context-management", "rlm", "subagents"]
 }
