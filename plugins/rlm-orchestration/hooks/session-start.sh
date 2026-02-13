@@ -35,7 +35,7 @@ Encode multi-step decomposition as tasks with blockedBy relationships. When a su
 RULES
 )
 
-# Escape for JSON output (same mechanism as superpowers)
+# Escape for JSON output
 ESCAPED=$(printf '%s' "$CONTENT" | python3 -c 'import sys,json; print(json.dumps(sys.stdin.read()))')
 
 cat <<EOF

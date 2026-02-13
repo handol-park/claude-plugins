@@ -1,7 +1,7 @@
 {
   "name": "rlm-orchestration",
   "description": "RLM-disciplined orchestration — main thread as orchestrator, subagents as workers, task list as call stack",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": {
     "name": "Handol Park"
   },

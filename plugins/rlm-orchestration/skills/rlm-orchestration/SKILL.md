@@ -62,8 +62,8 @@ Every dispatch MUST include these four sections:
 | Understand code | Explore | "Read X, summarize: purpose, inputs, outputs, dependencies" |
 | Search for patterns | Explore | "Find all occurrences of X, report locations and context" |
 | Plan changes | Plan | "Given X needs to change, identify affected files and changes" |
-| Implement feature | general-purpose | Use `subagent-driven-development` skill templates |
-| Review code | superpowers:code-reviewer | Use `requesting-code-review` skill templates |
+| Implement feature | general-purpose | "Implement X following TDD: write test, implement, verify" |
+| Review code | general-purpose | "Review changes in X for correctness, security, quality" |
 | Run commands | Bash (subagent) | "Execute X, report output and exit code" |
 
 ## 5. Task List as Call Stack
@@ -119,20 +119,19 @@ Example: Subagent returns "found 3 subsystems: auth, routing, storage — each n
 | "Let me just check one more thing" | Batch into a single subagent dispatch |
 | "I can synthesize from what I've read" | If you read >50 lines to get here, you already violated the rule |
 
-## 8. Integration with Superpowers
+## 8. Workflow Orchestration Patterns
 
-RLM is the **operating layer** beneath all superpowers skills. Superpowers define WHAT workflow to follow. RLM defines HOW the orchestrator participates — by delegating, not accumulating.
+RLM defines HOW the orchestrator participates in any workflow — by delegating, not accumulating.
 
-| Superpowers Skill | RLM Orchestrator Role |
-|-------------------|----------------------|
-| `brainstorming` | Orchestrate: dispatch research subagents, synthesize options |
-| `writing-plans` | Orchestrate: delegate codebase exploration, synthesize into plan |
-| `test-driven-development` | Orchestrate: delegate test writing/running to subagents |
-| `subagent-driven-development` | Natural fit — already delegates. RLM adds thresholds |
-| `systematic-debugging` | Delegate evidence gathering, synthesize diagnosis |
-| `verification-before-completion` | Delegate verification runs, synthesize pass/fail |
-| `requesting-code-review` | Delegate review to code-reviewer subagent |
-| `dispatching-parallel-agents` | Natural fit — RLM adds the 50/2 rule to dispatch decisions |
+| Workflow Phase | RLM Orchestrator Role |
+|----------------|----------------------|
+| Brainstorming | Dispatch research subagents, synthesize options |
+| Planning | Delegate codebase exploration, synthesize into plan |
+| TDD | Delegate test writing/running to subagents |
+| Implementation | Decompose tasks, dispatch parallel subagents with thresholds |
+| Debugging | Delegate evidence gathering, synthesize diagnosis |
+| Verification | Delegate verification runs, synthesize pass/fail |
+| Code Review | Delegate review to code-reviewer subagent |
 
 ## 9. Escape Hatch — Direct Reads Permitted
 
