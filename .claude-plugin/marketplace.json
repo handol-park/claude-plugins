@@ -12,7 +12,7 @@
       "name": "rlm",
       "source": "./plugins/rlm",
       "description": "RLM-disciplined orchestration — main thread as orchestrator, subagents as workers, task list as call stack",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "author": {
         "name": "Handol Park"
       },

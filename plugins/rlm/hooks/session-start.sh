@@ -44,6 +44,7 @@ ESCAPED=$(json_escape_python "$CONTENT" 2>/dev/null) || ESCAPED=$(json_escape_ba
 cat <<EOF
 {
   "hookSpecificOutput": {
+    "hookEventName": "SessionStart",
     "additionalContext": ${ESCAPED}
   }
 }

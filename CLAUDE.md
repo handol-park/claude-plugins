@@ -29,11 +29,12 @@ plugins/<name>/
 
 ## Hook Output Contract
 
-Session hooks must print valid JSON to stdout. The expected shape:
+Session hooks must print valid JSON to stdout. The `hookEventName` field is **required** for validation. The expected shape:
 
 ```json
 {
   "hookSpecificOutput": {
+    "hookEventName": "SessionStart",
     "additionalContext": "<escaped string>"
   }
 }
