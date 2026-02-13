@@ -1,0 +1,11 @@
+{
+  "name": "rlm-orchestration",
+  "description": "RLM-disciplined orchestration — main thread as orchestrator, subagents as workers, task list as call stack",
+  "version": "1.0.0",
+  "author": {
+    "name": "Handol Park"
+  },
+  "repository": "https://cmg-financial.ghe.com/hpark/rlm-orchestration",
+  "license": "MIT",
+  "keywords": ["orchestration", "context-management", "rlm", "subagents"]
+}
