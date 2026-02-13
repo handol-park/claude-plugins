@@ -1,5 +1,5 @@
 ---
-name: rlm-orchestration
+name: rlm
 description: Use when deciding whether to delegate to subagents, structuring subagent prompts, encoding task decomposition as a call stack, or when any orchestration decision is ambiguous. Invoke on complex delegation decisions.
 ---
 

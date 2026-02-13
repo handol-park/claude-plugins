@@ -2,6 +2,11 @@
 
 Handol Park's Claude Code plugin marketplace.
 
+## Prerequisites
+
+- **Bash** — Git Bash (bundled with Git for Windows) or WSL on Windows; native on macOS/Linux
+- **Python** (optional, 3.x recommended) — used by session hooks for JSON escaping if available; pure-bash fallback included
+
 ## Installation
 
 ```bash
@@ -10,12 +15,12 @@ Handol Park's Claude Code plugin marketplace.
 
 ## Available Plugins
 
-### rlm-orchestration
+### rlm
 
 RLM-disciplined orchestration — main thread as orchestrator, subagents as workers, task list as call stack. Inspired by [Recursive Language Models (RLM)](https://arxiv.org/abs/2512.24601).
 
 ```bash
-/plugin install rlm-orchestration@handol-park-plugins
+/plugin install rlm@handol-park-plugins
 ```
 
 **Core Rules:**

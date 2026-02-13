@@ -9,10 +9,10 @@
   },
   "plugins": [
     {
-      "name": "rlm-orchestration",
-      "source": "./plugins/rlm-orchestration",
+      "name": "rlm",
+      "source": "./plugins/rlm",
       "description": "RLM-disciplined orchestration — main thread as orchestrator, subagents as workers, task list as call stack",
-      "version": "1.0.0",
+      "version": "1.2.0",
       "author": {
         "name": "Handol Park"
       },
