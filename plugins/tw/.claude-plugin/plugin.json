@@ -1,11 +1,18 @@
 {
   "name": "tw",
-  "description": "Task management via taskwarrior with zettelkasten context recall — manage tasks and automatically surface relevant notes when starting work",
-  "version": "0.1.0",
+  "description": "Taskwarrior + zettelkasten integration — task management, knowledge capture, context recall, and reflection",
+  "version": "0.2.0",
   "author": {
     "name": "Handol Park"
   },
   "repository": "https://github.com/handol-park/claude-plugins",
   "license": "MIT",
-  "keywords": ["taskwarrior", "tasks", "recall", "zettelkasten", "productivity"]
+  "keywords": [
+    "taskwarrior",
+    "tasks",
+    "recall",
+    "zettelkasten",
+    "reflect",
+    "productivity"
+  ]
 }

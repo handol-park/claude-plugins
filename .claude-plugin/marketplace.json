@@ -21,8 +21,8 @@
     {
       "name": "tw",
       "source": "./plugins/tw",
-      "description": "Task management via taskwarrior with zettelkasten context recall",
-      "version": "0.1.0",
+      "description": "Taskwarrior + zettelkasten integration — task management, knowledge capture, context recall, and reflection",
+      "version": "0.2.0",
       "author": {
         "name": "Handol Park"
       },
