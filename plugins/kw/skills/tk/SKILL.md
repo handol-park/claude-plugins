@@ -1,15 +1,15 @@
 ---
-name: task
+name: tk
 description: Manage GTD tasks as zk notes in ~/notes/gtd/tasks/. Supports add, list, start, stop, done, modify, delete. Recalls zettelkasten context when starting a task.
 ---
 
-# Task
+# tk
 
 Manage GTD tasks as zk notes. Tasks live in `~/notes/gtd/tasks/` with
 status tracked via tags in frontmatter. Project dashboards in
 `~/notes/gtd/projects/` aggregate task status.
 
-Usage: `/task <subcommand> [args]`
+Usage: `/tk <subcommand> [args]`
 
 ## Subcommands
 
@@ -188,14 +188,14 @@ Remove a task.
 
 If the user says something natural instead of a subcommand, map it:
 
-| User says                          | Subcommand           |
-| ---------------------------------- | -------------------- |
-| `/task fix the login bug`          | `add`                |
-| `/task what's on my plate`         | `list`               |
-| `/task work on T4 Brain`           | `start`              |
-| `/task T4 is done`                 | `done`               |
-| `/task pause`                      | `stop` (active task) |
-| `/task change T4 to high priority` | `modify`             |
+| User says                        | Subcommand           |
+| -------------------------------- | -------------------- |
+| `/tk fix the login bug`          | `add`                |
+| `/tk what's on my plate`         | `list`               |
+| `/tk work on T4 Brain`           | `start`              |
+| `/tk T4 is done`                 | `done`               |
+| `/tk pause`                      | `stop` (active task) |
+| `/tk change T4 to high priority` | `modify`             |
 
 If ambiguous, ask.
 

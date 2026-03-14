@@ -32,7 +32,7 @@ plugins/kw/
 │   ├── hooks.json                  ← SessionStart event registration
 │   └── active-task-recall.sh       ← auto-recall context for active tasks
 └── skills/
-    ├── task/SKILL.md               ← task management (add/start/stop/done/…)
+    ├── tk/SKILL.md                 ← task management (add/start/stop/done/…)
     ├── zk-capture/SKILL.md         ← quick fleeting notes to inbox
     ├── zk-zettel/SKILL.md          ← permanent atomic notes
     ├── zk-search/SKILL.md          ← query the full vault
@@ -50,7 +50,7 @@ it into the session.
 
 | Skill         | Description                                                                                       |
 | ------------- | ------------------------------------------------------------------------------------------------- |
-| `/task`       | Manage GTD tasks as zk notes — add, list, start (with context recall), stop, done, modify, delete |
+| `/tk`         | Manage GTD tasks as zk notes — add, list, start (with context recall), stop, done, modify, delete |
 | `/zk-capture` | Capture a fleeting note to `gtd/inbox/`                                                           |
 | `/zk-zettel`  | Create a permanent atomic note in `zettels/`                                                      |
 | `/zk-search`  | Query the full vault — zettels, tasks, projects, inbox                                            |
