@@ -23,9 +23,10 @@ plugins/<name>/
 
 ## Current Plugins
 
-| Plugin | Description |
-|--------|-------------|
-| `rlm` | RLM-disciplined orchestration — enforces subagent delegation via 50/2 rule, circuit breaker, and trampoline pattern |
+| Plugin        | Description                                                                                                         |
+| ------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `rlm`         | RLM-disciplined orchestration — enforces subagent delegation via 50/2 rule, circuit breaker, and trampoline pattern |
+| `taskwarrior` | Task management via taskwarrior with zettelkasten context recall on task start                                      |
 
 ## Hook Output Contract
 

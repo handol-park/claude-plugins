@@ -17,6 +17,16 @@
         "name": "Handol Park"
       },
       "license": "MIT"
+    },
+    {
+      "name": "taskwarrior",
+      "source": "./plugins/taskwarrior",
+      "description": "Task management via taskwarrior with zettelkasten context recall",
+      "version": "0.1.0",
+      "author": {
+        "name": "Handol Park"
+      },
+      "license": "MIT"
     }
   ]
 }
