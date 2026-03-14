@@ -33,10 +33,27 @@ if command -v zk >/dev/null 2>&1; then
   fi
 fi
 
+# Check for GTD project note
+gtd_note=""
+if [ -n "$project" ]; then
+  # Use top-level name for dotted subprojects (e.g., saccade.l4 → saccade)
+  top_project="${project%%.*}"
+  gtd_file="$HOME/notes/gtd/projects/${top_project}.md"
+  if [ -f "$gtd_file" ]; then
+    gtd_note="- GTD project note: \`${gtd_file}\` (read for Outcome, Status, Next Actions)"
+  fi
+fi
+
 # Build context string
 context="## Active Task (#${task_id}): ${description}"
 [ -n "$project" ] && context="$context (project:${project})"
 [ -n "$tags" ] && context="$context [${tags}]"
+if [ -n "$gtd_note" ]; then
+  context="$context
+
+**GTD project:**
+$gtd_note"
+fi
 if [ -n "$notes" ]; then
   context="$context
 

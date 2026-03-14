@@ -1,20 +1,30 @@
 # kw — Knowledge Workflow
 
-A Claude Code plugin that integrates **taskwarrior** (task management) with
-**zk** (zettelkasten note-taking) for context-aware task execution and
-continuous knowledge capture.
+A Claude Code plugin that integrates **taskwarrior** (task management),
+**zk** (zettelkasten note-taking), and **GTD project notes** for
+context-aware task execution and continuous knowledge capture.
 
 ## What It Does
 
 When you start a task, kw automatically recalls relevant notes from your
-zettelkasten. As you work, you capture learnings back into the vault.
-When you finish, you reflect on what you learned.
+zettelkasten and surfaces the GTD project context (outcome, status, next
+actions). When you add a task, it links to the GTD project note — or
+offers to create one. When you complete a task, it logs the completion
+in the project note. As you work, you capture learnings back into the
+vault. When you finish, you reflect on what you learned.
+
+## GTD Integration
+
+GTD project notes live at `~/notes/gtd/projects/<project>.md` and serve
+as the source of truth for project-level context that taskwarrior tasks
+lack. The project name in taskwarrior maps to the filename (dotted
+subprojects like `saccade.l4` use the top-level name `saccade`).
 
 ## Structure
 
 ```
 plugins/kw/
-├── .claude-plugin/plugin.json      ← manifest (v0.2.0)
+├── .claude-plugin/plugin.json      ← manifest (v0.3.0)
 ├── hooks/
 │   ├── hooks.json                  ← SessionStart event registration
 │   └── active-task-recall.sh       ← auto-recall context for active tasks

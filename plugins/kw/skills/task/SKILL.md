@@ -1,12 +1,12 @@
 ---
 name: task
-description: Manage tasks via taskwarrior from within Claude Code. Supports add, list, start, stop, done, modify, delete. Recalls relevant zettelkasten context when starting a task.
+description: Manage tasks via taskwarrior from within Claude Code. Supports add, list, start, stop, done, modify, delete. Recalls zettelkasten and GTD project context when starting a task.
 ---
 
 # Task
 
 Manage taskwarrior tasks without leaving Claude Code. Recall relevant
-knowledge from the zettelkasten when starting a task.
+knowledge from the zettelkasten and GTD project notes when starting a task.
 
 Usage: `/task <subcommand> [args]`
 
@@ -22,6 +22,57 @@ task add <description> [project:<name>] [+<tag>] [due:<date>] [priority:<H|M|L>]
 
 After creating, report the task ID. If the user didn't specify a project,
 ask which project it belongs to.
+
+#### GTD project linking
+
+If `project:<name>` was specified (or the user chose one):
+
+1. Normalize the project name to a filename: lowercase, replace spaces with
+   hyphens. For dotted subprojects (e.g., `saccade.l4`), use the top-level
+   name (before the first dot).
+
+2. Check if the GTD project note exists:
+
+   ```bash
+   test -f ~/notes/gtd/projects/<name>.md && echo "exists"
+   ```
+
+3. **If it exists**: confirm the link:
+   "Linked to GTD project: `~/notes/gtd/projects/<name>.md`"
+
+4. **If it does not exist**: ask the user: "No GTD project note for
+   `<name>`. Create one?" If yes, create with this template:
+
+   ```markdown
+   ---
+   title: <Name (title-cased)>
+   date: <today>
+   tags: [project, <name>]
+   status: active
+   ---
+
+   ## Outcome
+
+   <ask the user, or leave as TODO>
+
+   ## Current Status
+
+   - Just started
+
+   ## Next Actions
+
+   - [ ] <the task description just added>
+
+   ## Waiting For
+
+   ## Reference
+
+   ## Log
+
+   - <today>: Project note created; added task "<description>"
+   ```
+
+   If the user declines, proceed without the GTD link.
 
 ### list
 
@@ -60,12 +111,27 @@ After starting:
    zk list --tag "<tag>" --format "{{id}} {{title}}" 2>/dev/null
    ```
 
-4. Read the top 5 most relevant notes (deduplicated across searches).
+4. Check for a GTD project note:
 
-5. Present a brief summary:
+   ```bash
+   test -f ~/notes/gtd/projects/<project>.md && echo "exists"
+   ```
+
+   If it exists, read it and extract **Outcome**, **Current Status**, and
+   **Next Actions**. For dotted subprojects, use the top-level name.
+   If the project field is empty or the file doesn't exist, skip silently.
+
+5. Read the top 5 most relevant zk notes (deduplicated across searches).
+
+6. Present a brief summary:
 
    ```
    **Started:** <description> (project:<project>)
+
+   **GTD Project:**
+   - **Outcome:** <first paragraph>
+   - **Status:** <current status content>
+   - **Next Actions:** <next actions content>
 
    **Relevant notes:**
    - [[id]] Title — one-line relevance
@@ -96,6 +162,25 @@ task <id> done
 ```
 
 After completing, report the task summary (description, project, time spent).
+
+Then update the GTD project note's log:
+
+1. If the task has a project, check for the GTD note:
+
+   ```bash
+   test -f ~/notes/gtd/projects/<project>.md && echo "exists"
+   ```
+
+   For dotted subprojects, use the top-level name.
+
+2. If the file exists, append to the `## Log` section:
+
+   ```
+   - <today>: Completed "<task description>"
+   ```
+
+   If the file has no `## Log` heading, append one before the entry.
+   If the file doesn't exist, skip silently.
 
 Learnings are captured by `/reflect`, not here — reflect cross-references
 `task completed:today export` to tag learnings with the right task/project.

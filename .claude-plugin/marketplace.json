@@ -21,8 +21,8 @@
     {
       "name": "kw",
       "source": "./plugins/kw",
-      "description": "Taskwarrior + zettelkasten integration — task management, knowledge capture, context recall, and reflection",
-      "version": "0.2.0",
+      "description": "Taskwarrior + zettelkasten + GTD project integration — task management, knowledge capture, context recall, and reflection",
+      "version": "0.3.0",
       "author": {
         "name": "Handol Park"
       },
