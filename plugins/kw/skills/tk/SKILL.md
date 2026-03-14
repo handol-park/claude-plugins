@@ -90,7 +90,9 @@ Create a new task note.
 
 ### list
 
-List tasks from the vault.
+List tasks or projects from the vault.
+
+**List tasks** (default):
 
 ```bash
 zk list gtd/tasks --format "{{filename-stem}} {{title}} [{{tags}}]" 2>/dev/null
@@ -101,6 +103,14 @@ Filters:
 - By status: `zk list gtd/tasks -t "active"` (or `pending`, `done`)
 - By project: `zk list gtd/tasks --match "project: <name>"`
 - Default (no filter): show all non-done tasks (`-t "active"` + `-t "pending"` in two queries, or filter output)
+
+**List projects** (`/tk list projects`):
+
+```bash
+zk list gtd/projects -t "project" --format "{{filename-stem}} {{title}} [{{tags}}]" 2>/dev/null
+```
+
+Always use `-t "project"` to exclude task notes from results.
 
 ### start
 
