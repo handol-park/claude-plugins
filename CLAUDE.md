@@ -26,7 +26,7 @@ plugins/<name>/
 | Plugin | Description                                                                                                         |
 | ------ | ------------------------------------------------------------------------------------------------------------------- |
 | `rlm`  | RLM-disciplined orchestration — enforces subagent delegation via 50/2 rule, circuit breaker, and trampoline pattern |
-| `tw`   | Taskwarrior + zettelkasten integration — task management, knowledge capture, context recall, and reflection         |
+| `kw`   | Taskwarrior + zettelkasten integration — task management, knowledge capture, context recall, and reflection         |
 
 ## Hook Output Contract
 
