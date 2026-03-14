@@ -29,13 +29,24 @@ zk list --match "<query>" --format "{{filename-stem}} {{title}} ({{path}})" --no
 
 If multiple matches, show them and ask which one.
 
-### 2. Open with `zk edit`
+### 2. Open with the user's `$VISUAL` or `$EDITOR`
+
+Get the resolved absolute path first:
 
 ```bash
-zk edit <id-or-path> --notebook-dir ~/notes
+zk list --match "<query>" --format "{{absolute-path}}" --limit 1 --notebook-dir ~/notes 2>/dev/null
 ```
 
-`zk edit` opens the note in the editor configured in `~/notes/.zk/config.toml` (currently `vim`).
+Then open it non-blocking (so the shell returns immediately):
+
+```bash
+# Prefer $VISUAL, fall back to $EDITOR, then code, then xdg-open
+${VISUAL:-${EDITOR:-code}} --no-wait <absolute-path> 2>/dev/null \
+  || emacsclient --no-wait <absolute-path> 2>/dev/null \
+  || code --no-wait <absolute-path> 2>/dev/null
+```
+
+Do NOT use `zk edit` — it requires an interactive TTY which is unavailable in Claude Code.
 
 ### 3. Confirm
 
