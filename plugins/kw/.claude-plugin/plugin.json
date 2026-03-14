@@ -1,7 +1,7 @@
 {
   "name": "kw",
   "description": "GTD + zettelkasten integration — task management via zk notes, knowledge capture, context recall, and reflection",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "author": {
     "name": "Handol Park"
   },
