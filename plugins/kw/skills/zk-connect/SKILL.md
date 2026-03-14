@@ -33,7 +33,7 @@ From the note content, identify 3–5 core concepts, terms, or claims to search 
 ### 3. Search for related notes
 
 ```bash
-zk list --match "<concept>" --format "{{id}} {{title}} ({{path}})" 2>/dev/null
+zk list --match "<concept>" --format "{{filename-stem}} {{title}} ({{path}})" 2>/dev/null
 ```
 
 One search per concept. Exclude the target note itself. Results may span

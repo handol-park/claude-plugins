@@ -25,8 +25,8 @@ ask the user which to capture (or create multiple notes).
 ### 2. Find related existing notes
 
 ```bash
-zk list --path zettels --match "<keyword1>" --format "{{id}} {{title}}"
-zk list --path zettels --match "<keyword2>" --format "{{id}} {{title}}"
+zk list zettels --match "<keyword1>" --format "{{filename-stem}} {{title}}"
+zk list zettels --match "<keyword2>" --format "{{filename-stem}} {{title}}"
 ```
 
 Run 2–3 searches across key terms. Collect candidate IDs for linking.

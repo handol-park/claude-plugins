@@ -7,7 +7,7 @@ if ! command -v zk >/dev/null 2>&1; then
 fi
 
 # Get active tasks from zk vault
-active=$(zk list --path gtd/tasks -t "active" --format "{{id}}|{{title}}|{{filename}}" --quiet 2>/dev/null)
+active=$(zk list gtd/tasks -t "active" --format "{{filename-stem}}|{{title}}|{{filename}}" --quiet 2>/dev/null)
 if [ -z "$active" ]; then
   exit 0  # No active tasks, silent
 fi
@@ -33,7 +33,7 @@ $line"
 
   # Search zettels for relevant notes
   if [ -n "$title" ]; then
-    hits=$(zk list --path zettels --match "$title" --format "- [[{{id}}]] {{title}}" --limit 3 --quiet 2>/dev/null)
+    hits=$(zk list zettels --match "$title" --format "- [[{{filename-stem}}]] {{title}}" --limit 3 --quiet 2>/dev/null)
     [ -n "$hits" ] && notes=$(printf '%s\n%s' "$notes" "$hits")
   fi
 

@@ -50,7 +50,7 @@ Create a new task note.
    the user chose one), normalize the name (lowercase, hyphens for spaces).
 
    ```bash
-   zk list --path gtd/projects --match "<name>" --format "{{filename}} {{title}}" 2>/dev/null
+   zk list gtd/projects --match "<name>" --format "{{filename}} {{title}}" 2>/dev/null
    ```
 
    - **If found**: Add the new task to the project's `## Tasks` section:
@@ -93,13 +93,13 @@ Create a new task note.
 List tasks from the vault.
 
 ```bash
-zk list --path gtd/tasks --format "{{id}} {{title}} [{{tags}}]" 2>/dev/null
+zk list gtd/tasks --format "{{filename-stem}} {{title}} [{{tags}}]" 2>/dev/null
 ```
 
 Filters:
 
-- By status: `zk list --path gtd/tasks -t "active"` (or `pending`, `done`)
-- By project: `zk list --path gtd/tasks --match "project: <name>"`
+- By status: `zk list gtd/tasks -t "active"` (or `pending`, `done`)
+- By project: `zk list gtd/tasks --match "project: <name>"`
 - Default (no filter): show all non-done tasks (`-t "active"` + `-t "pending"` in two queries, or filter output)
 
 ### start
@@ -109,7 +109,7 @@ Start working on a task. **This triggers context recall.**
 1. Find the task note by ID or title search:
 
    ```bash
-   zk list --path gtd/tasks --match "<query>" --format "{{filename}} {{title}}" 2>/dev/null
+   zk list gtd/tasks --match "<query>" --format "{{filename}} {{title}}" 2>/dev/null
    ```
 
 2. Edit the task note: change tag `pending` → `active` in frontmatter.
@@ -120,8 +120,8 @@ Start working on a task. **This triggers context recall.**
 4. **Context recall** — extract search terms from title, project, and tags:
 
    ```bash
-   zk list --path zettels --match "<title keywords>" --format "{{id}} {{title}}" --limit 5 2>/dev/null
-   zk list --path zettels -t "<project>" --format "{{id}} {{title}}" --limit 3 2>/dev/null
+   zk list zettels --match "<title keywords>" --format "{{filename-stem}} {{title}}" --limit 5 2>/dev/null
+   zk list zettels -t "<project>" --format "{{filename-stem}} {{title}}" --limit 3 2>/dev/null
    ```
 
 5. Read the project dashboard for Outcome, Tasks, and recent Log entries.
@@ -205,7 +205,7 @@ When no task is specified for `stop`, `done`, or `modify`, find active
 tasks:
 
 ```bash
-zk list --path gtd/tasks -t "active" --format "{{id}} {{title}}" 2>/dev/null
+zk list gtd/tasks -t "active" --format "{{filename-stem}} {{title}}" 2>/dev/null
 ```
 
 If exactly one is active, use it. If multiple, ask which one.

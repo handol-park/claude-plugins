@@ -23,7 +23,7 @@ back to look. Without it, reflects on everything since the last reflection.
    - Otherwise, find the last reflection by searching the vault:
 
      ```bash
-     zk list --path zettels -t "reflection" --sort created- --limit 1 --format "{{id}} {{title}}" 2>/dev/null
+     zk list zettels -t "reflection" --sort created- --limit 1 --format "{{filename-stem}} {{title}}" 2>/dev/null
      ```
 
      The start date is the day **after** that reflection's date.
@@ -57,7 +57,7 @@ back to look. Without it, reflects on everything since the last reflection.
 5. Also check for recently completed tasks to cross-reference learnings:
 
    ```bash
-   zk list --path gtd/tasks -t "done" --sort modified- --limit 10 --format "{{id}} {{title}}" 2>/dev/null
+   zk list gtd/tasks -t "done" --sort modified- --limit 10 --format "{{filename-stem}} {{title}}" 2>/dev/null
    ```
 
    Read relevant done-tasks to see what was accomplished and tag learnings

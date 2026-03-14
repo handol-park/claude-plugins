@@ -25,7 +25,7 @@ Break the question into 3–5 keyword variants (synonyms, related concepts).
 ### 2. Search the vault
 
 ```bash
-zk list --match "<term>" --format "{{id}} {{title}} ({{path}})" 2>/dev/null
+zk list --match "<term>" --format "{{filename-stem}} {{title}} ({{path}})" 2>/dev/null
 ```
 
 Run one search per term. Collect all unique note IDs returned.
