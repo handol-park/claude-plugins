@@ -19,8 +19,8 @@
       "license": "MIT"
     },
     {
-      "name": "taskwarrior",
-      "source": "./plugins/taskwarrior",
+      "name": "tw",
+      "source": "./plugins/tw",
       "description": "Task management via taskwarrior with zettelkasten context recall",
       "version": "0.1.0",
       "author": {
