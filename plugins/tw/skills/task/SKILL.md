@@ -95,13 +95,10 @@ Mark a task complete.
 task <id> done
 ```
 
-After completing:
+After completing, report the task summary (description, project, time spent).
 
-1. Ask: "Anything worth saving from this task?" (learnings, surprises,
-   decisions made)
-2. If yes, save as a zettel via `/zk-zettel` tagged with `lesson` and
-   the task's project
-3. Report completion
+Learnings are captured by `/reflect`, not here — reflect cross-references
+`task completed:today export` to tag learnings with the right task/project.
 
 ### modify
 
