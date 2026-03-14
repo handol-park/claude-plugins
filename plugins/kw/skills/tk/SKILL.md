@@ -17,18 +17,20 @@ Usage: `/tk <subcommand> [args]`
 
 Create a new task note.
 
-1. **Generate an ID**:
+1. **Create the note with `zk new`**:
 
    ```bash
-   cat /dev/urandom | tr -dc 'a-z0-9' | head -c 8
+   zk new gtd/tasks --title "<task description>" --print-path --no-input
    ```
 
-2. **Create `~/notes/gtd/tasks/<id>.md`**:
+   This returns the file path. The template fills `title` and `date` automatically.
+
+2. **Write the body** into that file:
 
    ```markdown
    ---
    title: <task description>
-   date: <today YYYY-MM-DD>
+   date: <auto-filled>
    tags: [task, pending]
    project: <project-name>
    ---
@@ -60,12 +62,18 @@ Create a new task note.
      ```
 
    - **If not found**: Ask the user: "No project dashboard for `<name>`.
-     Create one?" If yes, create with this template:
+     Create one?" If yes:
+
+     ```bash
+     zk new gtd/projects --title "<Name (title-cased)>" --print-path --no-input
+     ```
+
+     Then write the body:
 
      ```markdown
      ---
      title: <Name (title-cased)>
-     date: <today>
+     date: <auto-filled>
      tags: [project, active]
      ---
 

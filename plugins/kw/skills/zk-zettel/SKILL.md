@@ -31,18 +31,22 @@ zk list zettels --match "<keyword2>" --format "{{filename-stem}} {{title}}"
 
 Run 2–3 searches across key terms. Collect candidate IDs for linking.
 
-### 3. Generate an ID
+### 3. Create the note with `zk new`
 
 ```bash
-cat /dev/urandom | tr -dc 'a-z0-9' | head -c 8
+zk new zettels --title "<title>" --print-path --no-input
 ```
 
-### 4. Write `~/notes/zettels/<id>.md`
+This returns the file path (e.g. `/home/handolpark/notes/zettels/abc12345.md`).
+Then write the body into that file — the template already adds frontmatter with
+`title` and `date`; you only need to fill in `tags` and the content.
+
+The note body structure:
 
 ```markdown
 ---
 title: <concise title, noun phrase>
-date: <today YYYY-MM-DD>
+date: <auto-filled>
 tags: [<relevant tags>]
 ---
 
