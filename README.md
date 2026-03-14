@@ -13,24 +13,12 @@ Handol Park's Claude Code plugin marketplace.
 /plugin marketplace add handol-park/claude-plugins
 ```
 
-## Available Plugins
+## Plugins
 
-### rlm
-
-RLM-disciplined orchestration — main thread as orchestrator, subagents as workers, task list as call stack. Inspired by [Recursive Language Models (RLM)](https://arxiv.org/abs/2512.24601).
-
-```bash
-/plugin install rlm@handol-park-plugins
-```
-
-**Core Rules:**
-
-| Rule | Description |
-|------|-------------|
-| **50/2 Rule** | Delegate if >50 lines or >2 files to read |
-| **Circuit Breaker** | STOP after >8 Read/Grep calls without delegating |
-| **Subagent Returns** | Every dispatch specifies a Return Format (<200 words, file:line refs) |
-| **Trampoline** | When subagent reveals deeper complexity, create new tasks — don't expand yourself |
+| Plugin              | Description                                                                                                     |
+| ------------------- | --------------------------------------------------------------------------------------------------------------- |
+| [rlm](plugins/rlm/) | RLM-disciplined orchestration — subagent delegation via 50/2 rule, circuit breaker, and trampoline pattern      |
+| [kw](plugins/kw/)   | Knowledge Workflow — taskwarrior + zettelkasten integration for task management, context recall, and reflection |
 
 ## License
 
