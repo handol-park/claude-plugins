@@ -1,12 +1,12 @@
 ---
 name: zk-capture
-description: Quickly capture a fleeting note to the zettelkasten inbox. Use when the user wants to jot down an idea, thought, or reference without formatting ceremony.
+description: Quickly capture a fleeting note to the GTD inbox. Use when the user wants to jot down an idea, thought, or reference without formatting ceremony.
 model: sonnet
 ---
 
 # zk-capture
 
-Minimal-friction capture of a fleeting note to `~/notes/zettelkasten/inbox/`.
+Minimal-friction capture of a fleeting note to `~/notes/gtd/inbox/`.
 
 ## When to Use
 
@@ -23,7 +23,7 @@ Minimal-friction capture of a fleeting note to `~/notes/zettelkasten/inbox/`.
    cat /dev/urandom | tr -dc 'a-z0-9' | head -c 8
    ```
 
-2. **Create `~/notes/zettelkasten/inbox/<id>.md`** with minimal frontmatter:
+2. **Create `~/notes/gtd/inbox/<id>.md`** with minimal frontmatter:
 
    ```markdown
    ---

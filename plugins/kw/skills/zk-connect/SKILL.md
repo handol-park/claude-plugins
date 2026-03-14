@@ -1,12 +1,13 @@
 ---
 name: zk-connect
-description: Find missing links between notes in the zettelkasten. Use when a note feels isolated or after adding new notes to surface bidirectional connections.
+description: Find missing links between notes across the full vault (zettels + GTD). Use when a note feels isolated or after adding new notes to surface bidirectional connections.
 model: sonnet
 ---
 
 # zk-connect
 
-Surface missing bidirectional links for a note or set of notes.
+Surface missing bidirectional links for a note or set of notes across the
+full vault (`~/notes/`).
 
 ## When to Use
 
@@ -19,11 +20,10 @@ Surface missing bidirectional links for a note or set of notes.
 
 ### 1. Identify the target note
 
-If given an ID, read `~/notes/zettelkasten/<id>.md`.
-If given a title or topic, find it first:
+If given an ID, find and read the note (could be in any group):
 
 ```bash
-zk list --match "<title>" --format "{{id}} {{title}}"
+zk list --match "<id or title>" --format "{{filename}} {{title}} ({{path}})" 2>/dev/null
 ```
 
 ### 2. Extract key concepts
@@ -33,10 +33,11 @@ From the note content, identify 3–5 core concepts, terms, or claims to search 
 ### 3. Search for related notes
 
 ```bash
-zk list --match "<concept>" --format "{{id}} {{title}}"
+zk list --match "<concept>" --format "{{id}} {{title}} ({{path}})" 2>/dev/null
 ```
 
-One search per concept. Exclude the target note itself.
+One search per concept. Exclude the target note itself. Results may span
+zettels, GTD tasks, and project dashboards.
 
 ### 4. Read candidates
 
@@ -52,11 +53,11 @@ Discard weak associations.
 ```
 **Suggested links for [[id]] — Title:**
 
-→ [[id]] Title
+→ [[id]] Title (zettels/)
   Reason: <one sentence why these ideas connect>
   Direction: <target → candidate | candidate → target | bidirectional>
 
-→ [[id]] Title
+→ [[id]] Title (gtd/tasks/)
   ...
 ```
 

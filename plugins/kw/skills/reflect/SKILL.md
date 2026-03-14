@@ -20,10 +20,10 @@ back to look. Without it, reflects on everything since the last reflection.
      date -u -d "now - 3 days" '+%Y-%m-%d'  # for 3d
      ```
 
-   - Otherwise, find the last reflection by searching the zettelkasten:
+   - Otherwise, find the last reflection by searching the vault:
 
      ```bash
-     zk list --tag "reflection" --sort created- --limit 1 --format "{{id}} {{title}}"
+     zk list --path zettels -t "reflection" --sort created- --limit 1 --format "{{id}} {{title}}" 2>/dev/null
      ```
 
      The start date is the day **after** that reflection's date.
@@ -54,7 +54,16 @@ back to look. Without it, reflects on everything since the last reflection.
    - Read always-loaded lesson files (currently `lessons-*.md` in rules/)
    - Use `/zk-search` to check for existing notes on each surprise topic
 
-5. Save the reflection as a zettel using `/zk-zettel`:
+5. Also check for recently completed tasks to cross-reference learnings:
+
+   ```bash
+   zk list --path gtd/tasks -t "done" --sort modified- --limit 10 --format "{{id}} {{title}}" 2>/dev/null
+   ```
+
+   Read relevant done-tasks to see what was accomplished and tag learnings
+   with the right task/project context.
+
+6. Save the reflection as a zettel using `/zk-zettel`:
    - Tag with `reflection`
    - Structure the note body as:
 
@@ -80,13 +89,13 @@ back to look. Without it, reflects on everything since the last reflection.
 
    - Let `/zk-zettel` handle ID generation, linking, and file placement
 
-6. For each surprise or fail pattern that is **new** (not already a known
+7. For each surprise or fail pattern that is **new** (not already a known
    lesson or existing zettel), save it as its own zettel via `/zk-zettel`:
    - One atomic note per lesson
    - Tag with `lesson` and a topic tag (e.g., `infra`, `eval`, `llm`)
    - Link back to the reflection note
 
-7. Classify each new lesson to decide if it needs implementation beyond
+8. Classify each new lesson to decide if it needs implementation beyond
    a zettel (apply in order — first match wins):
 
    **Hook** — the failure is detectable by inspecting tool inputs/outputs.
@@ -112,11 +121,11 @@ back to look. Without it, reflects on everything since the last reflection.
    rather than recalled on demand.
    Ask: "Will this apply to most sessions regardless of project?"
    - Yes → add to the appropriate `lessons-<topic>.md` file.
-   - No → the zettel from step 6 is sufficient (recallable on demand).
+   - No → the zettel from step 7 is sufficient (recallable on demand).
 
    **None** — the zettel is enough. Most lessons stay as zettels.
 
-8. Implement candidates:
+9. Implement candidates:
    - For hooks: use `/hookify` if available, otherwise edit settings.json
      directly. Include a `description` field explaining the incident.
    - For skills: create a new `SKILL.md` or update an existing one.
@@ -124,7 +133,7 @@ back to look. Without it, reflects on everything since the last reflection.
    - For rules: add with incident context. Prune stale rules from the
      same file to keep always-loaded context lean.
 
-9. Commit: `chore(claude): reflection YYYY-MM-DD — {summary}`
+10. Commit: `chore(claude): reflection YYYY-MM-DD — {summary}`
 
 ## Important
 

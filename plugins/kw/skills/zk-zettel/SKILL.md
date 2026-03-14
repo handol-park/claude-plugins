@@ -6,7 +6,7 @@ model: sonnet
 
 # zk-zettel
 
-Convert conversation content into a permanent atomic note in `~/notes/zettelkasten/`.
+Convert conversation content into a permanent atomic note in `~/notes/zettels/`.
 
 ## When to Use
 
@@ -25,8 +25,8 @@ ask the user which to capture (or create multiple notes).
 ### 2. Find related existing notes
 
 ```bash
-zk list --match "<keyword1>" --format "{{id}} {{title}}"
-zk list --match "<keyword2>" --format "{{id}} {{title}}"
+zk list --path zettels --match "<keyword1>" --format "{{id}} {{title}}"
+zk list --path zettels --match "<keyword2>" --format "{{id}} {{title}}"
 ```
 
 Run 2–3 searches across key terms. Collect candidate IDs for linking.
@@ -37,7 +37,7 @@ Run 2–3 searches across key terms. Collect candidate IDs for linking.
 cat /dev/urandom | tr -dc 'a-z0-9' | head -c 8
 ```
 
-### 4. Write `~/notes/zettelkasten/<id>.md`
+### 4. Write `~/notes/zettels/<id>.md`
 
 ```markdown
 ---

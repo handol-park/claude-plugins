@@ -1,12 +1,13 @@
 ---
 name: zk-search
-description: Search the zettelkasten vault to answer a question or find relevant notes. Use when the user wants to query their knowledge base.
+description: Search the full notes vault (zettels + GTD) to answer a question or find relevant notes. Use when the user wants to query their knowledge base.
 model: sonnet
 ---
 
 # zk-search
 
-Query `~/notes/zettelkasten/` and synthesize an answer from existing notes.
+Query `~/notes/` (full vault — zettels, GTD projects, tasks, inbox) and
+synthesize an answer from existing notes.
 
 ## When to Use
 
@@ -24,20 +25,22 @@ Break the question into 3–5 keyword variants (synonyms, related concepts).
 ### 2. Search the vault
 
 ```bash
-zk list --match "<term>" --format "{{id}} {{title}}" 2>/dev/null
+zk list --match "<term>" --format "{{id}} {{title}} ({{path}})" 2>/dev/null
 ```
 
 Run one search per term. Collect all unique note IDs returned.
 
+The vault spans multiple groups:
+
+- `zettels/` — permanent knowledge
+- `gtd/projects/` — project dashboards
+- `gtd/tasks/` — task notes
+- `gtd/inbox/` — fleeting captures
+
 ### 3. Read candidate notes
 
-For each unique ID found, read the file:
-
-```
-~/notes/zettelkasten/<id>.md
-```
-
-Skim for relevance. Read fully if relevant.
+For each unique ID found, read the file. Skim for relevance. Read fully
+if relevant.
 
 ### 4. Synthesize
 
@@ -60,8 +63,8 @@ If the vault has no coverage, suggest `research` + `zk-zettel`.
 <synthesized answer citing [[id]] references>
 
 **Relevant notes:**
-- [[id]] Title — one-line summary
-- [[id]] Title — one-line summary
+- [[id]] Title (zettels/) — one-line summary
+- [[id]] Title (gtd/tasks/) — one-line summary
 
 **Gaps:** <what's missing, if anything>
 ```

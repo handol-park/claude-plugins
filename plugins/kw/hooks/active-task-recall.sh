@@ -1,60 +1,55 @@
 #!/usr/bin/env bash
-# SessionStart hook: check for active taskwarrior tasks and recall relevant zk notes
+# SessionStart hook: check for active zk task notes and recall relevant context
 
-# Get active task(s)
-active_json=$(task +ACTIVE export 2>/dev/null)
-active_count=$(echo "$active_json" | python3 -c "import sys,json; print(len(json.load(sys.stdin)))" 2>/dev/null || echo "0")
-if [ "$active_count" = "0" ]; then
-  exit 0  # No active task, no output — hook is silent
+# Require zk
+if ! command -v zk >/dev/null 2>&1; then
+  exit 0
 fi
 
-# Extract first active task's metadata
-description=$(echo "$active_json" | python3 -c "import sys,json; t=json.load(sys.stdin)[0]; print(t.get('description',''))" 2>/dev/null)
-project=$(echo "$active_json" | python3 -c "import sys,json; t=json.load(sys.stdin)[0]; print(t.get('project',''))" 2>/dev/null)
-tags=$(echo "$active_json" | python3 -c "import sys,json; t=json.load(sys.stdin)[0]; print(' '.join(t.get('tags',[])))" 2>/dev/null)
-task_id=$(echo "$active_json" | python3 -c "import sys,json; t=json.load(sys.stdin)[0]; print(t.get('id',0))" 2>/dev/null)
+# Get active tasks from zk vault
+active=$(zk list --path gtd/tasks -t "active" --format "{{id}}|{{title}}|{{filename}}" --quiet 2>/dev/null)
+if [ -z "$active" ]; then
+  exit 0  # No active tasks, silent
+fi
 
-# Search zk for relevant notes
+# Build context from active tasks
+context="## Active Tasks"
 notes=""
-if command -v zk >/dev/null 2>&1; then
-  # Search by description keywords
-  if [ -n "$description" ]; then
-    hits=$(zk list --match "$description" --format "- [[{{id}}]] {{title}}" --limit 5 2>/dev/null)
-    [ -n "$hits" ] && notes="$hits"
-  fi
-  # Search by project tag
-  if [ -n "$project" ]; then
-    proj_hits=$(zk list --tag "$project" --format "- [[{{id}}]] {{title}}" --limit 3 2>/dev/null)
-    [ -n "$proj_hits" ] && notes=$(printf '%s\n%s' "$notes" "$proj_hits")
-  fi
-  # Deduplicate
-  if [ -n "$notes" ]; then
-    notes=$(echo "$notes" | sort -u | head -5)
-  fi
-fi
 
-# Check for GTD project note
-gtd_note=""
-if [ -n "$project" ]; then
-  # Use top-level name for dotted subprojects (e.g., saccade.l4 → saccade)
-  top_project="${project%%.*}"
-  gtd_file="$HOME/notes/gtd/projects/${top_project}.md"
-  if [ -f "$gtd_file" ]; then
-    gtd_note="- GTD project note: \`${gtd_file}\` (read for Outcome, Status, Next Actions)"
-  fi
-fi
+while IFS='|' read -r id title filename; do
+  [ -z "$id" ] && continue
 
-# Build context string
-context="## Active Task (#${task_id}): ${description}"
-[ -n "$project" ] && context="$context (project:${project})"
-[ -n "$tags" ] && context="$context [${tags}]"
-if [ -n "$gtd_note" ]; then
+  # Extract project from frontmatter
+  task_file="$HOME/notes/gtd/tasks/${filename}"
+  project=""
+  if [ -f "$task_file" ]; then
+    project=$(sed -n 's/^project: *//p' "$task_file" | head -1)
+  fi
+
+  line="- [[${id}]] ${title}"
+  [ -n "$project" ] && line="$line (project: ${project})"
   context="$context
+$line"
 
-**GTD project:**
-$gtd_note"
-fi
+  # Search zettels for relevant notes
+  if [ -n "$title" ]; then
+    hits=$(zk list --path zettels --match "$title" --format "- [[{{id}}]] {{title}}" --limit 3 --quiet 2>/dev/null)
+    [ -n "$hits" ] && notes=$(printf '%s\n%s' "$notes" "$hits")
+  fi
+
+  # Check for project dashboard
+  if [ -n "$project" ]; then
+    proj_file="$HOME/notes/gtd/projects/${project}.md"
+    if [ -f "$proj_file" ]; then
+      context="$context
+  - Project dashboard: \`${proj_file}\`"
+    fi
+  fi
+done <<< "$active"
+
+# Deduplicate and add relevant notes
 if [ -n "$notes" ]; then
+  notes=$(echo "$notes" | grep -v '^$' | sort -u | head -5)
   context="$context
 
 **Relevant notes** (use Read to load if needed):
