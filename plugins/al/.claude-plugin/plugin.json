@@ -1,0 +1,11 @@
+{
+  "name": "al",
+  "description": "Minimal agentic loop — orchestrator dispatches subagents iteratively, state file as completion signal, hard max-iterations cap",
+  "version": "0.1.0",
+  "author": {
+    "name": "Handol Park"
+  },
+  "repository": "https://github.com/handol-park/claude-plugins",
+  "license": "MIT",
+  "keywords": ["agents", "agentic-loop", "orchestration", "automation"]
+}

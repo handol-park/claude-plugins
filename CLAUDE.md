@@ -27,6 +27,7 @@ plugins/<name>/
 | ------ | ------------------------------------------------------------------------------------------------------------------- |
 | `rlm`  | RLM-disciplined orchestration — enforces subagent delegation via 50/2 rule, circuit breaker, and trampoline pattern |
 | `kw`   | GTD + zettelkasten integration — task management via zk notes, knowledge capture, context recall, and reflection    |
+| `al`   | Minimal agentic loop — orchestrator dispatches subagents iteratively, state file as completion signal               |
 
 ## Hook Output Contract
 

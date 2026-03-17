@@ -27,6 +27,16 @@
         "name": "Handol Park"
       },
       "license": "MIT"
+    },
+    {
+      "name": "al",
+      "source": "./plugins/al",
+      "description": "Minimal agentic loop — orchestrator dispatches subagents iteratively, state file as completion signal, hard max-iterations cap",
+      "version": "0.1.0",
+      "author": {
+        "name": "Handol Park"
+      },
+      "license": "MIT"
     }
   ]
 }
