@@ -28,7 +28,7 @@ plugins/<name>/
 | `rlm`  | RLM-disciplined orchestration — enforces subagent delegation via 50/2 rule, circuit breaker, and trampoline pattern |
 | `kw`   | GTD + zettelkasten integration — task management via zk notes, knowledge capture, context recall, and reflection    |
 | `al`   | Minimal agentic loop — orchestrator dispatches subagents iteratively, state file as completion signal               |
-| `gh`   | GitHub workflow — `/gh:issue` drafts and files well-defined issues (problem, evidence, R1..Rn, acceptance criteria) |
+| `gh`   | GitHub workflow — `/gh:issue` drafts well-defined issues (R1..Rn, acceptance criteria); `/gh:pr` maps PR changes to them |
 
 ## Hook Output Contract
 
