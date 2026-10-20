@@ -1,0 +1,11 @@
+{
+  "name": "gh",
+  "description": "GitHub workflow skills — draft and file well-defined issues: problem, evidence, numbered requirements, falsifiable acceptance criteria",
+  "version": "0.1.0",
+  "author": {
+    "name": "Handol Park"
+  },
+  "repository": "https://github.com/handol-park/claude-plugins",
+  "license": "MIT",
+  "keywords": ["github", "issues", "requirements", "workflow"]
+}
