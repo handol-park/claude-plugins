@@ -37,6 +37,16 @@
         "name": "Handol Park"
       },
       "license": "MIT"
+    },
+    {
+      "name": "gh",
+      "source": "./plugins/gh",
+      "description": "GitHub workflow skills — /gh:issue drafts well-defined issues (problem, evidence, numbered requirements, falsifiable acceptance criteria); /gh:pr drafts PRs that map each change to those requirements",
+      "version": "0.1.0",
+      "author": {
+        "name": "Handol Park"
+      },
+      "license": "MIT"
     }
   ]
 }

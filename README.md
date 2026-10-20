@@ -19,6 +19,7 @@ Handol Park's Claude Code plugin marketplace.
 | ------------------- | --------------------------------------------------------------------------------------------------------------- |
 | [rlm](plugins/rlm/) | RLM-disciplined orchestration — subagent delegation via 50/2 rule, circuit breaker, and trampoline pattern      |
 | [kw](plugins/kw/)   | Knowledge Workflow — taskwarrior + zettelkasten integration for task management, context recall, and reflection |
+| [gh](plugins/gh/)   | GitHub workflow — `/gh:issue` drafts well-defined issues; `/gh:pr` drafts PRs mapping each change to their requirements |
 
 ## License
 
